@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -10,6 +10,8 @@ import './sign-up-form.style.scss'
 
 import Button from '../button/button.component'
 
+//import { UserContext } from "../../contexts/user.context";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -17,9 +19,15 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
+
 function SignUpForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  
+
+  //this is not needed alr as onAuthchanged will handle this in userContext
+  //const { setCurrentUser } = useContext(UserContext);
+
 
   //   function handleChange(event) {
   //     const { name, value } = event.target;
@@ -51,6 +59,10 @@ function SignUpForm() {
         );
         await createUserDocumentFromAuth(user, { displayName });
         resetFormFields();
+        
+        //this is not needed alr as onAuthchanged will handle this in userContext
+        //setCurrentUser(user);
+
       } catch (e) {
         if (e.code === "auth/email-already-in-use") {
           alert("email alr in used");
@@ -63,6 +75,8 @@ function SignUpForm() {
       return;
     }
   };
+
+
 
   return (
     <div className="sign-up-container">
