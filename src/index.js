@@ -1,27 +1,32 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 //React 18 no longer use import reactDOM from react-dom instead use this:
-import { createRoot} from 'react-dom/client'; 
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
+import { ProductsProvider } from "./contexts/products.context";
+import { CartProvider } from "./contexts/cart.context";
 import { doc } from "firebase/firestore";
 
-
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-    <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <CartProvider>
+
+          <App />
+          </CartProvider>
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
-)
-
+);
 
 // ReactDOM.render(
 //   <React.StrictMode>
