@@ -1,7 +1,6 @@
 import { FormInputLabel, Input, Group } from "./form-input.styles.jsx";
 
 const FormInput = ({ label, ...otherProps }) => {
-  console.log('hello')
   return (
     <Group>
       <Input {...otherProps} />
