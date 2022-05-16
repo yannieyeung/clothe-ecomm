@@ -6,6 +6,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/card-dropdown/card-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
+import { useSelector } from 'react-redux'
 
 import {
   NavigationContainer,
@@ -15,7 +16,7 @@ import {
 } from "./navigation.styles.jsx";
 
 function Navigation() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
   const { cartOpen } = useContext(CartContext);
 
   const handleSignOut = async () => {
@@ -24,6 +25,11 @@ function Navigation() {
     // This is not needed alr as its handle in userContext by onAuthChange
     //setCurrentUser(null);
   };
+
+  // when using redux to access store (data) instead of using useContext
+  const currentUser = useSelector((state)=>state.user.currentUser);
+  console.log(currentUser)
+
 
   return (
     <Fragment>
